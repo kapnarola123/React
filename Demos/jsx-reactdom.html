@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>
+            JSX VS ReactDOM
+        </title>
+    </head>
+    <body>
+        <!-- container node -->
+        <div id="jsx"></div>
+        <!-- container node -->
+        <div id="dom"></div>
+        <script src="http://fb.me/react-0.11.1.js"></script>
+        <script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
+        <script type="text/jsx">
+            /** @jsx React.DOM */
+
+            var set = React.createClass({
+                render : function (){
+                    return (
+                        <div>
+                            welcome to NAROLA
+                            <newsub />
+                        </div>
+                    )
+                }
+            });
+            
+            var newsub = React.createClass({
+                render : function (){
+                    return (
+                        <h1>
+                            Demo of React.JS
+                        </h1>
+                    )
+                }
+            });
+                
+            var MessageBoxDOM = React.createClass({
+                render : function (){
+                    return (
+                        React.DOM.div(null, 'Kamlesh pokiya')
+                    )
+                }
+            });
+
+            var reactComponentJSX = React.renderComponent(
+                <set />,
+                document.getElementById('jsx')
+            );
+
+            var reactComponentDOM = React.renderComponent(
+                MessageBoxDOM(null),
+                document.getElementById('dom')
+            );
+
+        </script>
+    </body>
+</html>

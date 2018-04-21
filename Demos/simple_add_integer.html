@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>Refs</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    </head>
+    <body>
+
+        <!-- container node -->
+        <div id="app"></div>
+
+        <script src="http://fb.me/react-0.11.1.js"></script>
+        <script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+        <script type="text/jsx">
+        /** @jsx React.DOM */
+
+          var MessageBox = React.createClass({
+            handleAdd: function(e) {
+              var newMessage = this.refs.newMessage.getDOMNode().value;
+              var newMessages = this.state.messages + parseInt(newMessage);
+              this.setState({
+                    messages: newMessages
+              });
+            },
+            getInitialState: function() {
+              return {
+                isVisible: true,
+                messages: 0
+              }
+            },
+            render: function() {
+              var inlineStyles = {
+                    display: this.state.isVisible ? 'block' : 'none',
+                    width : '50%',
+                    margin: '101px'
+              };
+              var messages = this.state.messages;
+              return (
+                <div className="container jumbotron" style={inlineStyles}>
+                  <h2>SUM of inputed integers</h2>
+                  <div className="form-group">
+                    <input ref="newMessage" type="text" className="form-control"/>
+                    <button onClick={this.handleAdd} className="btn btn-primary">Add</button>
+                  </div>
+                  { messages }
+                </div>
+              );
+            }
+          });
+          
+          var reactComponent = React.renderComponent(
+            <MessageBox />,
+            document.getElementById('app')
+          );
+        </script>
+    </body>
+</html>
